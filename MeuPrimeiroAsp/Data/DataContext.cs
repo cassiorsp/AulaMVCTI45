@@ -1,5 +1,6 @@
 ﻿using MeuPrimeiroAsp.Models;
 using Microsoft.EntityFrameworkCore;
+using TesteEntity.Models;
 
 namespace MeuPrimeiroAsp.Data
 {
@@ -11,5 +12,6 @@ namespace MeuPrimeiroAsp.Data
 
         public DbSet<ClienteModel> Clientes { get; set; }
         public DbSet<RepresentanteModel> Representantes { get; set;}
+        public DbSet<Usuario> Usuarios { get; set; } = default!;
     }
 }

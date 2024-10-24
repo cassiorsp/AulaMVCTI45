@@ -21,52 +21,61 @@
                 </button>
 
                 <div class="collapse navbar-collapse " id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        @* <li class="nav-item">
-                        <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Cliente" asp-action="Create">teste</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Cliente" asp-action="Cadastro">Cadastro Cliente</a>
-                        </li> *@
-                        @* dropdown cliente *@
-                        <li class="nav-item dropdown" >
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Selecione o item
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                </li>
-                            </ul>
-                        </li>
-                        @* fim dropdown cliente *@
-                        @* dropdown Representante *@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Representante
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item fw-bold" asp-area="" asp-controller="Representante" asp-action="Index">Todos</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item fw-bold" asp-area="" asp-controller="Representante" asp-action="Create">Cadastrar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        @* fim dropdown Representante *@
+                    <ul class="navbar-nav  ">
+
+                        @* Area Com autenticação *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-route="Auth.Logout">Logout</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Selecione o item
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Representante
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item fw-bold" asp-area="" asp-controller="Representante" asp-action="Index">Todos</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item fw-bold" asp-area="" asp-controller="Representante" asp-action="Create">Cadastrar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
+            <ul class="nav navbar-nav navbar-right">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li><a class="nav-link text-dark fw-bold" asp-route="Usuario.Cadastro"><i class="bi bi-person-add fs-3"></i> Cadastra-se</a></li>
+                    <li><a class="nav-link text-dark fw-bold" asp-route="Usuario.Login"><i class="bi bi-person-add fs-3"></i> Entre</a></li>
+                }
+                else
+                {
+                    <li><a class="nav-link text-dark fw-bold" asp-route="Usuario.Cadastro"><i class="bi bi-person-add fs-3"></i>@User.Identity.Name</a></li>
+                    <li><a class="nav-link text-dark" asp-route="Usuario.Logout">Logout</a></li>
+                }
+            </ul>
         </nav>
     </header>
 
