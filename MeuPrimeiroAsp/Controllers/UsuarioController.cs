@@ -113,6 +113,14 @@ namespace MeuPrimeiroAsp.Controllers
             }
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

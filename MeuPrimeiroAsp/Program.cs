@@ -19,6 +19,7 @@ builder.Services
         options.LoginPath = "/Login";
     });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,7 +45,7 @@ app.MapControllerRoute(
     defaults: new { controller = "Home", action = "Index" });
 app.MapControllerRoute(
     name: "Usuario.Cadastro",
-    pattern: "Cadastro Usuario",
+    pattern: "Cadastro_Usuario",
     defaults: new { controller = "Usuario", action = "Cadastro" });
 app.MapControllerRoute(
     name: "Usuario.Login",
@@ -54,8 +55,5 @@ app.MapControllerRoute(
     name: "Usuario.Logout",
     pattern: "Logout",
     defaults: new { controller = "Usuario", action = "Logout" });
-
-app.Run();
-
 
 app.Run();
